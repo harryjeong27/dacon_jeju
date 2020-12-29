@@ -57,7 +57,30 @@ dacon project of visualizing Jeju disaster spent during May - Aug
 
 ## 1.3 Domain Research & Questions<a name="domain"></a>
 - What is Disspent?
+  - Why
+    - 코로나19 위기 극복을 위한 정부의 한시적인 지원제도 
+    - 국민생활 안정과 경제회복 지원을 목적으로 함
+  - When & what
+    - first : from 20/04/20 to 20/05, cash 550억원
+    - second : from 20/08/24 to 20/10/11, cash 698억원
+  - where
+    - offline only
+    - not allowed : 대형마트, 백화점, 유흥업종, 위생업종, 골프장/노래방 등 레저업종, 카지노/복권방 등 사행업종, 성인용품점, 귀금속, 면세, 보험, 교통/통신료 등 자동이체 건
 - Questions
+  - 재난지원금 사용처 제한으로 인한 소비의 이동
+    - 골프장/노래방 등 레저업종 혹은 대형마트 혹은 백화점 혹은 유흥업종 혹은 면세에 사비를 쓰고, 꾸준히 비용발생하던 타 업종에 재난지원금 사용가능  
+      How? 전체 사용금액 변화체크, 사용제한 업종별 사용금액 변화체크, 사용가능 업종별 사용금액 변화체크
+  - 국민의 소비가 재난지원금 지원 이전과 비교하여 높아졌는가?
+    - 100만원 쓰던 사람이 130만원 썼는지? => 국민소비 증가 / 자영업자 매출증가
+      How? 전체 사용금액 변화체크
+    - 100만원 쓰던 사람이 사비 70, 재난지원금 30쓰고 남은 돈은 저축했는지? => 국민소비 답보 / 자영업자 매출증가 혹은 답보
+      How? 전체 사용금액 변화체크, 재난지원금 사용금액 체크
+  - 기간별 변화
+  - 시간별 변화
+  - 업종별 변화
+  - 업종규모별
+  - 지역별 변화
+  - 각 컬럼의 상관관계 체크 -> 이를 활용한 시각화
 
 # 2. Acquire training and testig data : Data Loading¶<a name="dataloading"></a>
 ## 2.1 Package Loading & Basic Setting<a name="package"></a>
@@ -66,6 +89,7 @@ dacon project of visualizing Jeju disaster spent during May - Aug
 # 3. Data Analyze (EDA) & Preprocessing (Wrangle, Cleanse)<a name="EDA&Wrangling"></a>
 ## 3.1 Analyze by describing data (Quick-view)¶<a name="quick"></a>
 ### 3.1.1 Check columns (name)
+    df.columns.values
 ### 3.1.2 Check feature type
 1) Categorical
 - Categorical
@@ -73,10 +97,17 @@ dacon project of visualizing Jeju disaster spent during May - Aug
 2) Numerical
 - Continous
 - Discrete
+    df.head()
+    df.tail()
 ### 3.1.3 Check errors or typos
+    plt.figure(figsize = (12, 8))
+    sns.boxplot(data = df_all[spent], color = 'red')
+    plt.show()
 ### 3.1.4 Check blank, null or empty values & data types
 - integer or floats or strings(objects)
     df.info()
+    import missingno
+    missingno.matrix(df);
 ### 3.1.5 Check distribution of numerical feature values
     df.describe()
 ## 3.2 Assumption in 5-fundamental ways<a name="assumption"></a>
@@ -110,8 +141,8 @@ Classifying. We may want to classify or categorize our samples. We may also want
 ## 3.3 Analyze by pivoting features<a name="pivoting"></a>
 ### Dependant variable vs each Explanatory variable
 - To confirm some of our observations and assumptions, we can quickly analyze our feature correlations by pivoting features against each other.
-- ex) We can only do so at this stage for features which do not have any empty values.
-It also makes sense doing so only for features which are categorical (human), ordinal (Q_Ques, TP_Ques, age_group) or discrete (familysize) type.
+- We can only do so at this stage for features which do not have any empty values.
+ex) It also makes sense doing so only for features which are categorical (human), ordinal (Q_Ques, TP_Ques, age_group) or discrete (familysize) type.
 
 ### Summary
 - ex) The voted rate is 0.55. (24898 voted, 20634 not voted out of 45532).
