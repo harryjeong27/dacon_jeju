@@ -138,16 +138,97 @@ Classifying. We may want to classify or categorize our samples. We may also want
 - ex) The educated are more likely to have voted.
 - ex) The people with High mach_score are more likely to have voted.
 
-## 3.3 Analyze by pivoting features<a name="pivoting"></a>
-### Dependant variable vs each Explanatory variable
-- To confirm some of our observations and assumptions, we can quickly analyze our feature correlations by pivoting features against each other.
-- We can only do so at this stage for features which do not have any empty values.
-ex) It also makes sense doing so only for features which are categorical (human), ordinal (Q_Ques, TP_Ques, age_group) or discrete (familysize) type.
+## 3.3 Analyze by pivoting features & Visualization<a name="pivoting"></a>
+### 3.3.1 Macro (key vs spent)
+spent = ['totalspent','disspent','numofspent','numofdisspent', 'tot_dis', 'num_tot_dis']  
+key = ['sigungu', 'ym', 'type','time','franclass','dong','category']  
+- all period
+  - 'sigungu' vs spent
+  - 'ym' vs spent
+  - 'category' vs spent
+  - 'type' vs spent
+  - 'time' vs spent
+  - 'franclass' vs spent
+  - 'dong' vs spent
 
-### Summary
-- ex) The voted rate is 0.55. (24898 voted, 20634 not voted out of 45532).
-- ex) education, age_group, married are strongly related to the voted rate. (classifying)
-- ex) engnat, gender, hand, race, religion, urban, familysize are not clearly related to the voted rate. (completing for familysize, creating)
+### basic
+  - totalspent : 700,426,010,461 (7천 4억 2천만원)
+  - disspent : 35,733,656,647 (357억 3천만원)
+  - numofspent : 21,917,930 (2천 1백 9십만 회)
+  - numofdisspent : 1,242,134 (124만 회)
+  - tot_dis : 664,692,353,814 (6천 6백 4십억 6억 9천만원)
+  - num_tot_dis : 20,675,796 (2천 6십 7만 회)  
+  *Q1* : tot_dis, num_tot_dis에 따른 월별 변화량 => 사비 사용금액의 추이 확인하기
+  - totalspent / numofspent : 31,957원 (회당 평균사용액)
+  - disspent / numofdisspent : 28,768원 (회당 평균재난지원금사용액)  
+  *Q2* : 회당 사용금액에 따른 업종 비교 => 제품/서비스가 고액인 업종에서는 많이 쓰이지 못했을 것이다.
+  
+### 'totalspent'
+- 'totalspent' of 'ym' : Aug > July > June > May
+  - 관광업 중심의 제주도의 경우 5 -> 8월은 성수기로 가는 단계이기에 'totalspent'가 늘었다고 판단됨. 하지만, 작은 차이임
+- 'totalspent' of 'time' & 'time_cut' : 점심 > 저녁 > 오후 > 오전 > 심야 > 새벽
+  - 점심, 저녁 시간대가 높으며, 활동이 적은 심야, 새벽 시간이 확실히 적음
+- 'totalspent' of 'sigungu' : 제주(73.7%) > 서귀포시(26.3%)
+- 'totalspent' of 'dong' : 상위 10개동 (연동>노형동>용담이동>이도이동>애월읍>서귀동>일도이동>한림읍>조천읍>안덕면)  
+  *Q3* : 상위권 동은 아무래도 관광상권이 아닐까?  
+  *Q4* : 재난지원금은 도민만 사용할 수 있으므로, 재난지원금만으로 봤을때 도민들이 어디서 재난지원금을 많이 사용했는지 볼 수 있음
+- 'totalspent' of 'category' : 외식/주점(25.8%), 마트/편의점(유통)(24%), 여행/숙박(10.9%), 주유/자동차(6.9%), 의료(6.5%)
+  - 교통/통신, 금융 등 재난지원금 사용이 막혀 있는 분야는 아무래도 금액사용비율이 매우 적음
+- 'totalspent' of 'type' : 일반한식(17.1%), 슈퍼마켓(7.8%), 편의점(5.6%), 면세점(4.8%), 주유소(4.8%) 등
+  - 상위권은 면세점을 제외하고는 재난지원금 사용가능 업종, 음식/생활용품 업종
+- 'totalspent' of 'type' : 일반(43%), 영세(22.4%) 양극단이 대부분 차지  
+  *Q5* : 재난지원금 사용이 늘어날수록 영세 비율이 높아지는지 체크할 필요 있을듯
+
+### numofspent
+- 'totalspent'와 거의 비슷한 흐름
+
+### disspent
+- 'disspent' of 'ym' : May(67.7%), June(27.1%), July(3.8%), Aug(1.5%)
+  - 재난지원금이 지급된 5월에 압도적으로 사용함
+- 'disspent' of 'time' : 시간별 재난지원금 사용금액은 'totalspent'와 매우 유사
+  - 재난지원금이든, 개인돈이든 사용시간대는 비슷
+- 'disspent' of 'sigungu' : 'totalspent'와 비슷
+- 'disspent' of 'dong' : 상위 10개동은 'totalspent'와 약간 다른 양상
+(노형동>연동>이도이동>일도이동>서귀동>애월읍>일도일동>도남동>동홍동>한림읍)
+  *Q6* : 관광상권의 영향으로 보임
+- 'disspent' of 'category' : 마트/편의점(유통)(36.3%), 외식/주점(22.5%), 주유/자동차(8.2%), 의료(7.9%), 레저/스포츠(4.6%)
+  - 'totalspent'와 비교하여 재난지원금이 사용불가한 면세점 등은 하위권으로 이동
+- 'disspent' of 'type' : 일반한식(16.9%), 슈퍼마켓(14.8%), 농축협직영매장(7.3%), 편의점(5.7%), 주유소(5.5%)
+  - 'totalspent'와 시각적 비교가 필요해보임
+- 'franclass'도 비슷함
+
+### numofdisspent
+- 'disspent'와 비슷한 흐름
+
+### tot_dis
+- 'totalsepnt'와 비슷한 흐름
+
+### 3.3.2 Micro
+spent = ['totalspent','disspent','numofspent','numofdisspent', 'tot_dis', 'num_tot_dis']  
+key = ['sigungu', 'ym', 'type','time','franclass','dong','category', 'time_cut']  
+- 'totalspent' in 'ym', 'time', 'time_cut'
+  - 'category'
+    - 5->8월로 갈수록 관광객이 증가하므로, 여행/숙박, 외식/주점, 마트/편의점(유통)은 증가하는 모습을 볼 수 있음
+    *Q7* : 정규화 시킬 필요는 있어보임
+  - 'type'
+    - 202005기준 상위 10개만 색인
+    - 보통 8월로 갈수록 사용금액이 높아지나 스포츠레저용품은 반대인 모습을 보임
+    *Q8* : 왜 스포츠/레저용품은 8월로 갈수록 줄어들까? 이미 그전에 많이 구매해서 그런건 아닐까?
+  - 'dong'
+    - 7월의 연동, 노형동, 이도이동, 8월의 용담이동, 애월읍, 한림읍, 조천읍, 성산읍, 안덕면, 구좌읍은 사용금액이 갑자기 상승하는 경향이 있음
+    *Q9* : 해당기간에 해당동에서 축제가 있었던 건 아닐까? 혹은 관광지인가?
+- 'disspent' in 'ym', 'time', 'time_cut'
+  - 'category'
+  - 'type'
+  - 'dong' 
+- 'numofspent' in 'ym', 'time', 'time_cut'
+  - 'category'
+  - 'type'
+  - 'dong'
+- 'numofdisspent' in 'ym', 'time', 'time_cut'
+  - 'category'
+  - 'type'
+  - 'dong' 
 
 ## 3.4 Analyze by visualizing data in 5 ways<a name="visual"></a>
 >Confirming some of our assumptions using visualizations for analyzing the data.
