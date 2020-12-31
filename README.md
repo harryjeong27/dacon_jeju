@@ -139,7 +139,8 @@ Classifying. We may want to classify or categorize our samples. We may also want
 - ex) The people with High mach_score are more likely to have voted.
 
 ## 3.3 Analyze by pivoting features & Visualization<a name="pivoting"></a>
-### 3.3.1 Macro (key vs spent)
+### 3.3.1 Macro 1 (key vs spent)
+- 목표 없이 key feature와 spent feature 간의 관계를 개괄적으로 살피면서 특성을 찾아본다.  
 spent = ['totalspent','disspent','numofspent','numofdisspent', 'tot_dis', 'num_tot_dis']  
 key = ['sigungu', 'ym', 'type','time','franclass','dong','category']  
 - all period
@@ -203,28 +204,57 @@ key = ['sigungu', 'ym', 'type','time','franclass','dong','category']
 ### tot_dis
 - 'totalsepnt'와 비슷한 흐름
 
-### 3.3.2 Micro
+### 3.3.2 Macro 2
+- 목표 없이 key vs times, spent feature 간의 관계를 개괄적으로 살피면서 특성을 찾아본다.  
+times = ['ym', 'time', 'time_cut']  
 spent = ['totalspent','disspent','numofspent','numofdisspent', 'tot_dis', 'num_tot_dis']  
-key = ['sigungu', 'ym', 'type','time','franclass','dong','category', 'time_cut']  
+key = ['type', 'dong','category']  
+
+
+
+
 - 'totalspent' in 'ym', 'time', 'time_cut'
-  - 'category'
+  - 'category' & 'ym
     - 5->8월로 갈수록 관광객이 증가하므로, 여행/숙박, 외식/주점, 마트/편의점(유통)은 증가하는 모습을 볼 수 있음
     *Q7* : 정규화 시킬 필요는 있어보임
-  - 'type'
+  - 'category' & 'time_cut'
+    - 각 업종의 시간대별 특성이 보이지만 특별한 점은 없는듯 보임
+    *Q8* : 'totalspent'보다는 'num'관련 컬럼과 비교하는게 좋을듯
+  - 'type' & 'ym'
     - 202005기준 상위 10개만 색인
     - 보통 8월로 갈수록 사용금액이 높아지나 스포츠레저용품은 반대인 모습을 보임
-    *Q8* : 왜 스포츠/레저용품은 8월로 갈수록 줄어들까? 이미 그전에 많이 구매해서 그런건 아닐까?
-  - 'dong'
+    *Q9* : 왜 스포츠/레저용품은 8월로 갈수록 줄어들까? 이미 그전에 많이 구매해서 그런건 아닐까?
+  - 'type' & 'time_cut'
+    - 거래량이 제일 많은 점심 거래량 순으로 시각화하였으며, 업종의 특성에 따른 거래량이 보인 것 같다. ex) 저녁이 점심에 비해 식비 평균사용금액이 높음
+  - 'dong' & 'ym'
     - 7월의 연동, 노형동, 이도이동, 8월의 용담이동, 애월읍, 한림읍, 조천읍, 성산읍, 안덕면, 구좌읍은 사용금액이 갑자기 상승하는 경향이 있음
     *Q9* : 해당기간에 해당동에서 축제가 있었던 건 아닐까? 혹은 관광지인가?
+  - 'dong' & 'time_cut'
+    - 심야, 새벽에 가장 많은 사용금액이 나오는 동은 연동
+    *Q10* : 연동엔 도대체 뭐가 있는 걸까?
 - 'disspent' in 'ym', 'time', 'time_cut'
-  - 'category'
-  - 'type'
-  - 'dong' 
+  - 'category' & 'ym'
+    - 재난지원금은 5월에 압도적으로 쓰였으며, 대부분 마트/편의점(유통), 외식/주점에서 사용하였고, 7, 8월도 같은 흐름이었다.
+    *Q11* : 5월에 지나치게 많이 쓰여 6, 7, 8월에는 소비진작 효과가 미미하지 않았을까?
+  - 'category' & 'time_cut'
+    - 별다른 특성을 못 찾음
+  - 'type' & 'ym'
+    - 별다른 특성을 못 찾음
+  - 'type' & 'time_cut'
+    - 별다른 특성을 못 찾음
+  - 'dong' & 'ym'
+    - 전체사용금액의 경우 월이 지날수록 커지는 추세였으나 재난지원금은 다른 형상이며, 5월이 작년과 비교했을때 사용금액이 높아졌는지 볼 필요가 있을듯 혹은 5월에 재난지원금으로 원래 쓰던 돈을 많이 세이브했으므로 6, 7, 8월에 더 사용했다고 볼 수도 있을듯
+  - 'dong' & 'time_cut'
+    - 연동은 전체사용금액에서도 심야, 새벽 사용률이 상위권이었는데 재난지원금에서도 그런 것을 보니 주민도 많이 살고 관광객도 많이 오는 지역으로 생각됨
 - 'numofspent' in 'ym', 'time', 'time_cut'
-  - 'category'
-  - 'type'
-  - 'dong'
+  - 'category' & 'ym'
+    - 마트/편의점(유통), 여행/숙박, 외식/주점은 5->8월에 사용금액 증가가 두드러짐.
+  - 'category' & 'time_cut'
+    - 
+  - 'type' & 'ym'
+  - 'type' & 'time_cut'
+  - 'dong' & 'ym'
+  - 'dong' & 'time_cut'
 - 'numofdisspent' in 'ym', 'time', 'time_cut'
   - 'category'
   - 'type'
