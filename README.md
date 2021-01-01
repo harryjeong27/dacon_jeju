@@ -210,112 +210,85 @@ times = ['ym', 'time', 'time_cut']
 spent = ['totalspent','disspent','numofspent','numofdisspent', 'tot_dis', 'num_tot_dis']  
 key = ['type', 'dong','category']  
 
+### category
+- 'category' vs times + spent
+  - 'ym' + spent
+    - 5->8월로 갈수록 관광객이 증가하므로, 여행/숙박, 외식/주점, 마트/편의점(유통)은 'totalspent'가 증가하는 모습을 볼 수 있음
+    - 'numofspent'도 같이 증가하는 흐름, 여행/숙박에서는 'numofspent'증가량에 비해 'totalspent'증가량이 매우 큰데, 이것은 여름성수기로 들어갈수록 요금이 높아지는 것을 보여주는 것으로 보임
+    - 'disspent'는 'totalspent'와 비슷한 흐름으로 사용했음이 보이며, 한가지 특징은 재난지원금이 사용될 수 있는 업종임에도 불구하고 사용이 매우 적은 여행/숙박을 보았을 때 도민들은 여행/숙박에는 재난지원금을 포함한 돈을 잘 사용하지 않는 것으로 보임
+    *Q7* : 위와 같은 방식으로 재난지원금 혜택을 본 업종을 판별할 수 있을 듯
+    - 재난지원금은 5월에 압도적으로 쓰였으며, 대부분 마트/편의점(유통), 외식/주점에서 사용하였고, 7, 8월도 같은 흐름이었다.
+    *Q8* : 5월에 지나치게 많이 쓰여 6, 7, 8월에는 소비진작 효과가 미미하지 않았을까?
+    - 마트/편의점(유통), 여행/숙박, 외식/주점은 5->8월에 사용횟수 증가가 두드러짐.
+  - 'time_cut' + spent
+    - spent에 상관 없이 비슷한 양상을 보이며, 큰 특이점을 찾을 수 없었음
 
-
-
-- 'totalspent' in 'ym', 'time', 'time_cut'
-  - 'category' & 'ym
-    - 5->8월로 갈수록 관광객이 증가하므로, 여행/숙박, 외식/주점, 마트/편의점(유통)은 증가하는 모습을 볼 수 있음
-    *Q7* : 정규화 시킬 필요는 있어보임
-  - 'category' & 'time_cut'
-    - 각 업종의 시간대별 특성이 보이지만 특별한 점은 없는듯 보임
-    *Q8* : 'totalspent'보다는 'num'관련 컬럼과 비교하는게 좋을듯
-  - 'type' & 'ym'
-    - 202005기준 상위 10개만 색인
+- 'type' vs times + spent
+  - 'ym' + spent
+    - 202005기준 상위 15개만 색인
     - 보통 8월로 갈수록 사용금액이 높아지나 스포츠레저용품은 반대인 모습을 보임
     *Q9* : 왜 스포츠/레저용품은 8월로 갈수록 줄어들까? 이미 그전에 많이 구매해서 그런건 아닐까?
-  - 'type' & 'time_cut'
+    - 'disspent'를 보면, 농협직영매장, 농협하나로클럽에서 재난지원금을 많이 사용한 것을 볼 수 있다.
+  - 'time_cut' + spent
     - 거래량이 제일 많은 점심 거래량 순으로 시각화하였으며, 업종의 특성에 따른 거래량이 보인 것 같다. ex) 저녁이 점심에 비해 식비 평균사용금액이 높음
-  - 'dong' & 'ym'
+
+- 'dong' vs times + spent
+  - 'ym' + spent
     - 7월의 연동, 노형동, 이도이동, 8월의 용담이동, 애월읍, 한림읍, 조천읍, 성산읍, 안덕면, 구좌읍은 사용금액이 갑자기 상승하는 경향이 있음
-    *Q9* : 해당기간에 해당동에서 축제가 있었던 건 아닐까? 혹은 관광지인가?
-  - 'dong' & 'time_cut'
+    *Q10* : 해당기간에 해당동에서 축제가 있었던 건 아닐까? 혹은 관광지인가?
+    - 전체사용금액의 경우 월이 지날수록 커지는 추세였으나 재난지원금은 다른 형상이며, 5월이 작년과 비교했을때 총사용금액이 높아졌는지 볼 필요가 있을듯 혹은 5월에 재난지원금으로 원래 쓰던 돈을 많이 세이브했으므로 6, 7, 8월에 더 사용했다고 볼 수도 있을듯
+    *Q11* : 노형동에서 가장 많은 재난지원금이 쓰인 것으로 보아 주미이 가장 많이 사는 곳인지 볼 필요가 있음
+  - 'time_cut' + spent
     - 심야, 새벽에 가장 많은 사용금액이 나오는 동은 연동
-    *Q10* : 연동엔 도대체 뭐가 있는 걸까?
-- 'disspent' in 'ym', 'time', 'time_cut'
-  - 'category' & 'ym'
-    - 재난지원금은 5월에 압도적으로 쓰였으며, 대부분 마트/편의점(유통), 외식/주점에서 사용하였고, 7, 8월도 같은 흐름이었다.
-    *Q11* : 5월에 지나치게 많이 쓰여 6, 7, 8월에는 소비진작 효과가 미미하지 않았을까?
-  - 'category' & 'time_cut'
-    - 별다른 특성을 못 찾음
-  - 'type' & 'ym'
-    - 별다른 특성을 못 찾음
-  - 'type' & 'time_cut'
-    - 별다른 특성을 못 찾음
-  - 'dong' & 'ym'
-    - 전체사용금액의 경우 월이 지날수록 커지는 추세였으나 재난지원금은 다른 형상이며, 5월이 작년과 비교했을때 사용금액이 높아졌는지 볼 필요가 있을듯 혹은 5월에 재난지원금으로 원래 쓰던 돈을 많이 세이브했으므로 6, 7, 8월에 더 사용했다고 볼 수도 있을듯
-  - 'dong' & 'time_cut'
+    *Q12* : 연동엔 도대체 뭐가 있는 걸까?
     - 연동은 전체사용금액에서도 심야, 새벽 사용률이 상위권이었는데 재난지원금에서도 그런 것을 보니 주민도 많이 살고 관광객도 많이 오는 지역으로 생각됨
-- 'numofspent' in 'ym', 'time', 'time_cut'
-  - 'category' & 'ym'
-    - 마트/편의점(유통), 여행/숙박, 외식/주점은 5->8월에 사용금액 증가가 두드러짐.
-  - 'category' & 'time_cut'
-    - 
-  - 'type' & 'ym'
-  - 'type' & 'time_cut'
-  - 'dong' & 'ym'
-  - 'dong' & 'time_cut'
-- 'numofdisspent' in 'ym', 'time', 'time_cut'
-  - 'category'
-  - 'type'
-  - 'dong' 
 
-## 3.4 Analyze by visualizing data in 5 ways<a name="visual"></a>
->Confirming some of our assumptions using visualizations for analyzing the data.
+### 3.3.3 Resolving assumptions & questions
 
-### 3.4.0 Heatmap
->Check correlation btw human features
-- ex) (+) Relation : education & married, voted & married, voted & education
-- ex) (-) Relation : mach_score & married, mach_score & chin
+### Checkpoint 1. 월별 재난지원금 사용비율
+- 사용비율체크 (전체, 월별, 업종별, 지역별, 업종규모별)
+- 전체 by 파이차트
+  - 전체 소비 중 재난지원금 사용비율은?
+  - ~%이며, 전체 재난지원금 얼마 중 얼마가 사용되었다. 소진율은 ~%다.
+- 월별 by 누적막대그래프 (비율)
+  - 월별 소비 중 재난지원금 사용비율은?
+  - 월별 ~%이며, 몇 월에 대부분이 소비되었다.
+  - 재난지원금으로 인해 5월 소비가 많이 진작되었다. 6, 7, 8월은? (관광객 숫자 체크)
 
-### 3.4.1 Correlating based on feature types
-ex)
-- mach_score
-   - 56점 이상 높아지면 점점 not voted가 많아짐 => classifying
-- tp_score : 큰 의미 없어보임
-- age_group + mach_score
-   - 10s are the most, but most did not vote and they tend to have high mach_score
-   - 40s, 50s, 60s mostly voted and they tend to have relatively low mach_score
-   - It seems high mach_score provoke low vote rate and the low is opposite.
-- Married might divide into two groups at [0.0, 1.0], [2.0, )
-- Education must be an important feature and is already well-grouped.
+### Checkpoint 2. 업종별 재난지원금 사용비율
+- 업종별 by 수평누적막대그래프 (비율)
+  - 주로 ~~업종에서 재난지원금이 소비되었으며, 재난지원금이 다 소진된 6~8월은 ~~하다.
+  - 'disspent'는 'totalspent'와 비슷한 흐름으로 사용했음이 보이며, 한가지 특징은 재난지원금이 사용될 수 있는 업종임에도 불구하고 사용이 매우 적은 여행/숙박을 보았을 때 도민들은 여행/숙박에는 재난지원금을 포함한 돈을 잘 사용하지 않는 것으로 보임
+    *Q7* : 위와 같은 방식으로 재난지원금 혜택을 본 업종을 판별할 수 있을 듯
 
-## 3.5 Wrangle data<a name="wrangle"></a>
->We have collected several assumptions and decisions regarding our datasets and solution requirements. So far we did not have to change a single feature or value to arrive at these. Let us now execute our decisions and assumptions for correcting, creating, and completing goals.
+### Checkpoint 3. 지역별 재난지원금 사용비율
+- 지역별 by 수평누적막대그래프
+  - 주로 ~~지역에서 재난지원금이 소비되었으며, 해당지역의 전체 소비 중 재난지원금 사용비율은 ~다.
+  *Q11* : 노형동, 연동에서 가장 많은 재난지원금이 쓰인 것으로 보아 주미이 가장 많이 사는 곳인지 볼 필요가 있음 (지도?)
 
-### 3.5.1 Correcting by dropping features
-This is a good starting goal to execute. By dropping features we are dealing with fewer data points. Speeds up our notebook and eases the analysis.
-- Based on our assumptions and decisions we want to drop **'engnat, gender, hand, race, religion, urban, familysize'**  features.
-- Based on our assumptions and decisions we also want to drop **'Q_Ques', 'Q_Time', 'W_Ques', **  features.
+### Checkpoint 4. 업종규모별 재난지원금 사용비율
+- 업종규모별 
+  - 어떤 업종규모에서 재난지원금이 많이 쓰여서 효과가 있었는지? (영세에게 많이 갔는지)
+  - 각 업종규모 내에서 어떤 업종으로 많이 갔는지? (파이차트)
 
-### 3.5.2 Creating new feature extracting from existing
-- age, mach, married may be considered to create new feature by banding.
+### Checkpoint 5. 재난지원금으로 인한 소비의 변화
+- 재난지원금 사용처 제한으로 인한 소비의 이동
+  - 5월에는 높고 6, 7, 8월에는 줄어드는 업종
 
-- mach_score
-   - 56점 이상 높아지면 점점 not voted가 많아짐 => classifying
-- tp_score : 큰 의미 없어보임
-- age_group + mach_score
-   - 10s are the most, but most did not vote and they tend to have high mach_score
-   - 40s, 50s, 60s mostly voted and they tend to have relatively low mach_score
-   - It seems high mach_score provoke low vote rate and the low is opposite.
-- Married might divide into two groups at [0.0, 1.0], [2.0, )
-- Education must be an important feature and is already well-grouped.
+- 주민이 많이 사용할만한 업종을 통한 분석
+  - 재난지원금 사용률 및 월별 소비변화
+- 관광객이 많이 사용할만한 업종
+  - 재난지원금 사용률 및 월별 소비변화
 
-### 3.5.3 Completing a numerical continuous feature (NA)
-Now we should start estimating and completing features with missing or null values. 
-- familysize seems it has outlier -> but we already eliminated.
-   
-We can consider three methods to complete a numerical continuous feature.   
-1. A simple way is to generate random numbers between mean and [standard deviation](https://en.wikipedia.org/wiki/Standard_deviation).
-2. More accurate way of guessing missing values is to use other correlated features. In our case we note correlation among Age, Gender, and Pclass. Guess Age values using [median](https://en.wikipedia.org/wiki/Median) values for Age across sets of Pclass and Gender feature combinations. So, median Age for Pclass=1 and Gender=0, Pclass=1 and Gender=1, and so on...
-3. Combine methods 1 and 2. So instead of guessing age values based on median, use random numbers between mean and standard deviation, based on sets of Pclass and Gender combinations.
+### Checkpoint 6. 사비 사용금액의 추이
+  *Q1* : tot_dis, num_tot_dis에 따른 월별 변화량 => 사비 사용금액의 추이 확인하기
+  *Q* : tot_dis가 0이면 재난지원금으로 100% 사용한 행임
 
-### 3.5.4 Completing a categorical feature (NA)
-- There is no NA.
 
-### 3.5.5 Create new feature combining existing features
-- We created mach_score & tp_score above.
-- We created mach_age above.
 
-### 3.5.6 Converting categorical feature to numeric
-- age_group
+
+
+
+  
+
+### 4. Result
