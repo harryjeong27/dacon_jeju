@@ -2,7 +2,6 @@
 =========================================
 > dacon project of visualizing Jeju disaster spent during May - Aug
 
-
 # Table of Contents
 1. [Problem Definition & Domain Research](#ProblemDefinition&DomainResearch)  
     1.1 [Problem Definiton](#problemdefinition)  
