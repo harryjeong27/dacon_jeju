@@ -14,9 +14,10 @@
 3. [Data Analyze (EDA) & Preprocessing (Wrangle, Cleanse)](#EDA&Wrangling)  
     3.1 [Analyze by describing data (Quick-view)¶](#quick)  
     3.2 [Assumption in 5-fundamental ways](#assumption)  
-    3.3 [Analyze by pivoting features](#pivoting)  
-    3.4 [Analyze by visualizing data in 5 ways](#visual)  
-    3.5 [Wrangle data](#wrangle)  
+    3.3 [Analyze by pivoting features](#pivoting)
+4. [Result](#result)
+    4.1 [Summary]
+    4.2 [Opinion]
 
 # 1. Problem Definition & Domain Research<a name="ProblemDefinition&DomainResearch"></a>
 ## 1.1 Problem Definiton<a name="problemdefinition"></a>
@@ -149,15 +150,6 @@ df.tail()
 - key feature와 spent feature 간의 관계를 개괄적으로 살피면서 전반적인 특성을 파악한다.
   - spent = ['totalspent','disspent','numofspent','numofdisspent']  
   - key = ['sigungu', 'ym', 'type','time','franclass','dong','category', 'time_cut']  
-- all period
-  - 'sigungu' vs spent
-  - 'ym' vs spent
-  - 'category' vs spent
-  - 'type' vs spent
-  - 'time' vs spent
-  - 'franclass' vs spent
-  - 'dong' vs spent
-  - 'time_cut' vs spent
 
 #### 1) basic info
 #### 2) totalspent
@@ -172,16 +164,8 @@ df.tail()
   - key = ['type', 'dong','category']  
 
 #### 1) category vs times + spent
-- 'ym' + spent
-- 'time_cut' + spent
-
 #### 2) type vs times + spent
-- 'ym' + spent
-- 'time_cut' + spent
-
 #### 3) dong vs times + spent
-- 'ym' + spent
-- 'time_cut' + spent
 
 ### 3.3.3 Resolving assumptions & questions
 - see deeply all the assumptions & questions we mentioned above and conclude.
@@ -193,20 +177,17 @@ df.tail()
 #### 3) 2020년 제주도 내 인구현황 & 관광객현황에 따른 분석
 #### 4) 정리 및 해석
 
-
 ### Checkpoint 2. 업종별 재난지원금 사용비율
 > 업종별 추이를 통한 인사이트 도출
 #### 1) 월별 업종별 총사용금액과 재난지원금 사용액 비교
 #### 2) 재난지원금이 많이 사용된 업종의 세부업종 살펴보기
 #### 3) 정리 및 해석
 
-
 ### Checkpoint 3. 지역별 재난지원금 사용비율
 > 지역별 추이를 통한 인사이트 도출
 #### 1) 재난지원금 사용을 많이 한 지역과 인구가 많은 지역
 #### 2) 5월 지역별 총사용액과 재난지원금 사용액 그리고 8월 지역별 총사용액 비교
 #### 3) 정리 및 해석
-
 
 ### Checkpoint 4. 업종규모별 재난지원금 사용비율
 > 업종규모별 추이를 통한 인사이트 도출 (plotly 활용)
@@ -216,11 +197,11 @@ df.tail()
 #### 4) 업종규모별 업종 및 세부업종 분포    
 #### 5) 정리 및 해석
 
-
 ### Checkpoint 5. 공간정보 활용
 #### 1) 인구분포 Heatmap (202006 기준)
 #### 2) 업종분포 Marker (202005 기준)
 #### 3) 정리 및 해석
 
-
-# 4. Result
+# 4. Result<a name="result"></a>
+## 4.1 Summary<a name="summary"></a>
+## 4.2 Opinion<a name="opinion"></a>
